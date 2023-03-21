@@ -1,0 +1,83 @@
+<h1>App Component</h1>
+<router-outlet></router-outlet>
+<div class="container mt-5">
+  <div class="card">
+    <div class="card-header">Employees</div>
+    <div class="card-body">
+      <div class="row">
+        <div class="col-sm-6">
+          <div class="card">
+            <div class="card-header">Create</div>
+            <div class="card-body">
+              <form
+                action=""
+                [formGroup]="employeeFormGroup"
+                (ngSubmit)="OnSubmit()"
+              >
+                <div class="row">
+                  <div class="col-sm-12 mb-2">
+                    <label for="">Name</label>
+                    <input
+                      type="text"
+                      formControlName="name"
+                      class="form-control"
+                    />
+                  </div>
+                  <div class="col-sm-12 mb-2">
+                    <label for="">Mobile Number</label>
+                    <input
+                      type="text"
+                      formControlName="mobileNumber"
+                      class="form-control"
+                    />
+                  </div>
+                  <div class="col-sm-12 mb-2">
+                    <label for="">EmailId</label>
+                    <input
+                      type="text"
+                      formControlName="emailId"
+                      class="form-control"
+                    />
+                  </div>
+                  <div class="col-sm-12 mb-2">
+                    <button class="btn btn-primary" type="submit">
+                      Create Employee
+                    </button>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div *ngIf="employee.length == 0" class="alert alert-warning">
+      No Employees found
+    </div>
+    <table class="table" *ngIf="employee.length > 0">
+      <thead>
+        <tr>
+          <td>Name</td>
+          <td>Mobile Number</td>
+          <td>Email Id</td>
+          <td>Action</td>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let emp of employee">
+          <td>{{ emp.name }}</td>
+          <td>{{ emp.mobileNumber }}</td>
+          <td>{{ emp.emailId }}</td>
+          <td>
+            <button (click)="editEmployee(emp)" class="btn btn-link">
+              Edit
+            </button>
+            <button (click)="deleteEmployee(emp.id)" class="btn btn-link">
+              Delete
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
